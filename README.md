@@ -1,32 +1,53 @@
-# FixMyCommunity-Municipal-Accountability-Platform
-FixMyCommunity is a civic-tech platform designed to improve transparency, accountability, and service delivery between communities and municipalities.
+# FixMyCommunity – Municipal Accountability Platform
 
-# It enables citizens to report issues such as:
+FixMyCommunity is a civic-tech platform focused on transparent, real-time issue reporting between residents and municipalities.
 
-Water leaks
-Electricity outages
-Broken streetlights
-Potholes and road damage
+## Current Stack (Free/Open Source)
+- **Frontend:** HTML, CSS, JavaScript (`fixmycommunity/frontend`)
+- **Backend:** FastAPI + SQLAlchemy (`fixmycommunity/backend/app`)
+- **Database:** SQLite (default local file `fixmycommunity.db`)
 
-# Key Features
+## Project Structure
+```text
+fixmycommunity/
+  backend/
+    app/
+      main.py         # FastAPI routes and business flow
+      database.py     # SQLAlchemy engine + session
+      models.py       # DB tables (Issue, Team, Announcement, EmergencyRequest)
+      schemas.py      # API request/response models
+  frontend/
+    index.html        # Multi-screen civic app UI
+    assets/
+      css/styles.css  # Styling
+      js/app.js       # Frontend app logic and API integration
+```
 
-Geo-based issue reporting (PostGIS)
-Real-time issue tracking and updates
-Duplicate report detection
-SLA monitoring and automated escalation
-Public transparency dashboard
-Full audit trail of municipal actions
-Multi-channel notifications (SMS, WhatsApp, Email)
-Role-based access (citizens, officials, engineers)
+## MVP Features Implemented
+- Issue reporting (category, location, ward, description, anonymous option)
+- Issue list + category filtering
+- Upvoting reports
+- Municipal assignment to teams
+- Status workflow: `reported -> assigned -> in_progress -> fixed`
+- Community announcements feed
+- Emergency request creation with reference IDs
+- Basic municipal stats endpoint for dashboard cards
 
-# Tech Stack
+## Run Locally
+From `fixmycommunity/backend`:
 
-FastAPI (Backend)
-PostgreSQL + PostGIS
-SQLAlchemy
-Celery + Redis
-Docker
+```bash
+pip install fastapi uvicorn sqlalchemy pydantic
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
 
-# Goal
+Then open `fixmycommunity/frontend/index.html` (or serve it with a local static server).
 
-To bridge the gap between communities and local government by making service delivery transparent, trackable, and accountable.
+## Goal Alignment
+This MVP aligns with your core goals by enabling:
+- Citizen reporting + tracking
+- Municipality operational visibility
+- Transparency through status updates and feed updates
+- Emergency intake and reference tracking
+
+Next steps can add authentication, GIS mapping, media upload storage, notifications, and real-time sockets.
