@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixMyCommunity</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">FixMyCommunity</div>
+
+        <ul class="nav-links">
+            <li><a href="#" onclick="showScreen('home')">Home</a></li>
+            <li><a href="#" onclick="showScreen('reports')">Reports</a></li>
+            <li><a href="#" onclick="showScreen('emergency')">Emergency</a></li>
+            <li><a href="#" onclick="showScreen('feed')">Community</a></li>
+        </ul>
+
+        <div>
+            <button class="btn btn-secondary" onclick="showScreen('login')">Login</button>
+            <button class="btn" onclick="showScreen('admin')">Admin</button>
+        </div>
+    </nav>
+</header>
+
+<main class="main">
+
+    <!-- Splash -->
+    <div id="splash" class="screen active">
+        <div class="container splash-screen">
+            <h1 class="hero-title">FixMyWard</h1>
+            <p class="hero-subtitle">Report. Track. Improve Your Ward.</p>
+
+            <button class="btn" onclick="showScreen('home')">Enter</button>
+        </div>
+    </div>
+
+    <!-- Home -->
+    <div id="home" class="screen">
+        <div class="container">
+            <div class="map-container">Map will be here</div>
+
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterIssues('all')">All</button>
+                <button class="filter-btn" onclick="filterIssues('water')">Water</button>
+                <button class="filter-btn" onclick="filterIssues('electricity')">Electricity</button>
+                <button class="filter-btn" onclick="filterIssues('roads')">Roads</button>
+            </div>
+
+            <div class="issues-grid" id="issues-container"></div>
+        </div>
+    </div>
+
+    <!-- Report -->
+    <div id="report-form" class="screen">
+        <div class="container">
+            <form id="issue-form">
+                <input id="location" placeholder="Location" class="form-input">
+                <textarea id="description" class="form-input"></textarea>
+
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<button class="fab" onclick="showScreen('report-form')">+</button>
+
+<!-- JS -->
+<script src="assets/js/api.js"></script>
+<script src="assets/js/issues.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
