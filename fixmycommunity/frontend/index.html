@@ -1,82 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FixMyCommunity</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FixMyCommunity - Report. Track. Improve.</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">FixMyCommunity</div>
-
-        <ul class="nav-links">
-            <li><a href="#" onclick="showScreen('home')">Home</a></li>
-            <li><a href="#" onclick="showScreen('reports')">Reports</a></li>
-            <li><a href="#" onclick="showScreen('emergency')">Emergency</a></li>
-            <li><a href="#" onclick="showScreen('feed')">Community</a></li>
-        </ul>
-
-        <div>
-            <button class="btn btn-secondary" onclick="showScreen('login')">Login</button>
-            <button class="btn" onclick="showScreen('admin')">Admin</button>
-        </div>
+  <header class="header">
+    <nav class="nav container">
+      <div class="logo">FixMyCommunity</div>
+      <ul class="nav-links">
+        <li><a href="#" data-screen="home">Home</a></li>
+        <li><a href="#" data-screen="reports">My Reports</a></li>
+        <li><a href="#" data-screen="emergency">Emergency</a></li>
+        <li><a href="#" data-screen="feed">Community</a></li>
+        <li><a href="#" data-screen="admin">Municipality</a></li>
+      </ul>
+      <button class="btn" id="report-btn">Report Issue</button>
     </nav>
-</header>
+  </header>
 
-<main class="main">
+  <main class="main container">
+    <section id="home" class="screen active">
+      <h1>Transparent civic reporting for safer communities.</h1>
+      <p class="muted">Real-time issue reporting, tracking, and municipality accountability.</p>
+      <div class="map-container">Interactive map (next phase) with issue pins and hotspots.</div>
+      <div id="category-filters" class="filters"></div>
+      <div id="issues-container" class="issues-grid"></div>
+    </section>
 
-    <!-- Splash -->
-    <div id="splash" class="screen active">
-        <div class="container splash-screen">
-            <h1 class="hero-title">FixMyWard</h1>
-            <p class="hero-subtitle">Report. Track. Improve Your Ward.</p>
+    <section id="report-form" class="screen">
+      <h2>Report an Issue</h2>
+      <form id="issue-form" class="section">
+        <label>Title <input id="title" class="form-input" required /></label>
+        <label>Category <select id="category" class="form-input" required></select></label>
+        <label>Location <input id="location" class="form-input" required /></label>
+        <label>Ward <input id="ward" class="form-input" placeholder="Ward 23" required /></label>
+        <label>Description <textarea id="description" class="form-input" required></textarea></label>
+        <label><input type="checkbox" id="anonymous" /> Report anonymously</label>
+        <button class="btn" type="submit">Submit Report</button>
+      </form>
+    </section>
 
-            <button class="btn" onclick="showScreen('home')">Enter</button>
-        </div>
-    </div>
+    <section id="reports" class="screen">
+      <h2>Recent Reports</h2>
+      <div id="user-reports" class="issues-grid"></div>
+    </section>
 
-    <!-- Home -->
-    <div id="home" class="screen">
-        <div class="container">
-            <div class="map-container">Map will be here</div>
+    <section id="feed" class="screen">
+      <h2>Community Feed</h2>
+      <div id="announcements" class="issues-grid"></div>
+    </section>
 
-            <div class="filters">
-                <button class="filter-btn active" onclick="filterIssues('all')">All</button>
-                <button class="filter-btn" onclick="filterIssues('water')">Water</button>
-                <button class="filter-btn" onclick="filterIssues('electricity')">Electricity</button>
-                <button class="filter-btn" onclick="filterIssues('roads')">Roads</button>
-            </div>
+    <section id="emergency" class="screen">
+      <h2>Emergency Services</h2>
+      <div class="filters">
+        <button class="btn" data-service="police">Police</button>
+        <button class="btn" data-service="ambulance">Ambulance</button>
+        <button class="btn" data-service="fire">Fire</button>
+      </div>
+    </section>
 
-            <div class="issues-grid" id="issues-container"></div>
-        </div>
-    </div>
+    <section id="admin" class="screen">
+      <h2>Municipality Dashboard</h2>
+      <div id="stats" class="dashboard-stats"></div>
+      <div id="admin-reports" class="issues-grid"></div>
+    </section>
+  </main>
 
-    <!-- Report -->
-    <div id="report-form" class="screen">
-        <div class="container">
-            <form id="issue-form">
-                <input id="location" placeholder="Location" class="form-input">
-                <textarea id="description" class="form-input"></textarea>
-
-                <button type="submit" class="btn">Submit</button>
-            </form>
-        </div>
-    </div>
-
-</main>
-
-<button class="fab" onclick="showScreen('report-form')">+</button>
-
-<!-- JS -->
-<script src="assets/js/api.js"></script>
-<script src="assets/js/issues.js"></script>
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/app.js"></script>
-
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
